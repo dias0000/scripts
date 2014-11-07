@@ -11,10 +11,6 @@ python /tmp/iface-choice.py
 iface=$(<~/.honey_iface)
 
 
-# Move SSH server from Port 22 to Port 66534
-sudo sed -i 's:Port 22:Port 65534:g' /etc/ssh/sshd_config
-sudo service ssh reload
-
 
 ## install p0f ##
 sudo apt-get install -y p0f
@@ -44,11 +40,6 @@ sudo chown -R nobody:nogroup /var/dionaea/
 sudo wget https://raw.github.com/andrewmichaelsmith/honeypot-setup-script/master/templates/dionaea.conf.tmpl -O /etc/dionaea/dionaea.conf
 #note that we try and strip :0 and the like from interface here
 sudo sed -i "s|%%IFACE%%|${iface%:*}|g" /etc/dionaea/dionaea.conf
-
-
-#point port 22 at port 2222
-#we should have -i $iface here but it was breaking things with virtual interfaces
-sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
 
 
 #persist iptables config
