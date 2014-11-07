@@ -3,6 +3,15 @@
 # update apt repositories
 sudo apt-get update
 
+apt-get install unzip
+apt-get install make
+apt-get install git
+apt-get install python-pip
+apt-get install python-netaddr
+apt-get install aptitude
+apt-get install g++
+apt-get install npm
+
 #user iface choice
 sudo apt-get -y install python-pip gcc python-dev
 sudo pip install netifaces
